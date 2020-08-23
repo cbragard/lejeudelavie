@@ -1,0 +1,11 @@
+@import "./scss/_font";
+@import "./scss/_color";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
+    background-color: white;
+}

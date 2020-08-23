@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    node:
+        container_name: lejeudelavie_node
+        restart: 'unless-stopped'
+        build:
+            context: 'docker/node'
+        volumes:
+            - '.:/app'
+        ports:
+            - 3001:3001
