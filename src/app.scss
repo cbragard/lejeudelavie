@@ -6,6 +6,61 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .app {
-    background-color: white;
+  display: flex;
+  padding: .2rem;
+
+  .grid {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 calc(100% - 150px);
+
+    .line {
+      display: flex;
+      flex-flow: row;
+      flex: 0 0 5px;
+
+      .row {
+        flex: 0 0 5px;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, .25);
+        cursor: pointer;
+
+        &.alive {
+            background-color: black;
+        }
+      }
+    }
+  }
+
+  .controls {
+    flex: 0 0 150px;
+    padding: .2rem;
+    background-color: rgba(0, 0, 0, .3);
+    border: 1px solid grey;
+
+    .control {
+      padding: .25rem;
+
+      .label {
+        
+      }
+    }
+
+    input[type="number"] {
+      display: inline-block;
+      width: calc(50% - .4rem);
+      margin: .2rem;
+      padding: .2rem;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      margin: .2rem 0;
+      padding: .2rem;
+      text-align: center;
+    }
+  }
 }

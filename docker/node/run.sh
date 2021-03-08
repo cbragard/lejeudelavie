@@ -1,2 +1,3 @@
 #!/bin/sh
-npm run watch
+npm install
+npm start

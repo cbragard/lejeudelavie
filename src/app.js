@@ -1,0 +1,95 @@
+export default {
+    name: 'App',
+    created() {
+        this.empty(true)
+    },
+    data() {
+        return {
+            cols: 180,
+            count: 0,
+            grid: [],
+            interval: 50,
+            lines: 100,
+            running: false
+        }
+    },
+    methods: {
+        checkRow(row) {
+            const items = this.getMatrix(row.x, row.y)
+            const count = items.reduce((acc, item) => item?.status === 1 ? acc + 1 : acc, 0)
+            return this.evolve(row, count)
+        },
+        findRow(x, y) {
+            const line = this.grid[y - 1]
+            return line ? line.rows[x - 1] : null
+        },
+        evolve(row, count) {
+            let { status, x, y } = row
+            if (status === 1) {
+                if ([2, 3].indexOf(count) === -1) {
+                    status = 0
+                }
+            } else if (count === 3) {
+                status = 1
+            }
+            return {
+                x,
+                y,
+                status
+            }
+        },
+        empty(random = false) {
+            this.count = 0
+            this.grid = [...Array(this.lines)].map((_, i) => ({
+                y: i + 1,
+                rows: [...Array(this.cols)].map((_, j) => ({
+                    x: j + 1,
+                    y: i + 1,
+                    status: random
+                        ? Math.round(Math.random())
+                        : 0
+                }))
+            }))
+        },
+        getMatrix(x, y) {
+            return [
+                this.findRow(x - 1, y - 1),
+                this.findRow(x, y - 1),
+                this.findRow(x + 1, y - 1),
+                this.findRow(x - 1, y),
+                this.findRow(x + 1, y),
+                this.findRow(x - 1, y + 1),
+                this.findRow(x, y + 1),
+                this.findRow(x + 1, y + 1)
+            ]
+        },
+        round() {
+            const grid = this.grid.map((line, i) => ({
+                y: i + 1,
+                rows: line.rows.map((row) => this.checkRow(row))
+            }))
+            this.grid = grid
+            this.count = this.count + 1
+            if (this.running) {
+                setTimeout(this.round, this.interval)
+            }
+        },
+        start() {
+            this.running = true
+            this.round()
+        },
+        stop() {
+            this.running = false
+        },
+        toggle(x, y) {
+            const row = this.findRow(x, y)
+            if (row) {
+                if (row.status === 0) {
+                    row.status = 1
+                } else if(row.status === 1) {
+                    row.status = 0
+                }
+            }
+        }
+    }
+}

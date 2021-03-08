@@ -1,10 +1,20 @@
-FROM node:10.17.0-alpine
+FROM node:17-alpine3.14
 
 WORKDIR /app
 
 ADD ./run.sh /scripts/run.sh
 RUN chmod +x /scripts/*
 
-EXPOSE 3001
+USER node
+
+RUN mkdir /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+WORKDIR /app
+
+RUN npm install -g npm@latest
+
+EXPOSE 3000
 
 CMD ["/bin/sh", "/scripts/run.sh"]

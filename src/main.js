@@ -1,31 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import App from './app.vue'
-import store from './store/store.js'
-import routes from './routes.js'
-import VueI18n from 'vue-i18n'
 import moment from 'moment'
-import messages from './messages.json'
+import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.prototype.moment = moment
-Vue.use(VueRouter)
-Vue.use(VueI18n)
-Vue.filter("formatNumber", function (val) {
-  return new Intl.NumberFormat().format(val)
+import App from './app.vue'
+import routes from './routes'
+import messages from './messages.json'
+import store from './store/store'
+
+const history = createWebHistory()
+const router = createRouter({
+  history,
+  routes,
 })
-const router = new VueRouter({
-    mode: 'history',
-    routes
-})
-const i18n = new VueI18n({
+const i18n = new createI18n({
     locale: 'en',
     messages
 })
+const app = createApp(App)
 
-new Vue({
-    el: '#app',
-    store,
-    router,
-    i18n,
-    render (r) { return r(App) }
-})
+app.config.globalProperties.moment = moment
+
+app.use(router)
+app.use(store)
+app.use(i18n)
+router
+    .isReady()
+    .then(() => {
+        app.mount('#app', true)
+    })
