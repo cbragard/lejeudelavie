@@ -1,13 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate"
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-    modules: {
-    },
-    plugins: [createPersistedState({
+const plugins = typeof window === 'undefined'
+    ? []
+    : [createPersistedState({
         storage: window.sessionStorage
     })]
+
+const store = createStore({
+    modules: {},
+    plugins
 })
+
+export default store

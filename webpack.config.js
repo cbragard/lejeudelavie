@@ -1,7 +1,7 @@
 const
     nodeExternals = require('webpack-node-externals'),
     path = require('path'),
-    vueLoaderPlugin = require('vue-loader/lib/plugin'),
+    { VueLoaderPlugin } = require('vue-loader'),
     webpack = require('webpack')
 
 module.exports = [
@@ -19,7 +19,7 @@ module.exports = [
         },
         resolve: {
             alias: {
-                vue: 'vue/dist/vue.js'
+                vue: "vue/dist/vue.esm-bundler.js"
             }
         },
         devtool: 'source-map',
@@ -52,7 +52,7 @@ module.exports = [
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
-            new vueLoaderPlugin()
+            new VueLoaderPlugin()
         ],
         devServer: {
             contentBase: __dirname + '/build/',
