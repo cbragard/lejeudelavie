@@ -1,5 +1,14 @@
 {
     "en": {
+        "empty": "empty",
+        "evolution": "evolution",
+        "line-cols": "lines / cols",
+        "random": "random",
+        "reset": "reset",
+        "round": "round",
+        "start": "start",
+        "stop": "stop",
+        "plus-one-round": "+1 round"
     },
     "fr": {
 
