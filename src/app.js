@@ -7,21 +7,20 @@ export default {
         return {
             cols: 180,
             count: 0,
+            currentloop: null,
+            fps: 0,
             grid: [],
             interval: 50,
-            lines: 100,
+            lastloop: null,
+            lines: 150,
             running: false
         }
     },
     methods: {
-        checkRow(row) {
-            const items = this.getMatrix(row.x, row.y)
+        check(row) {
+            const items = this.matrix(row.x, row.y)
             const count = items.reduce((acc, item) => item?.status === 1 ? acc + 1 : acc, 0)
             return this.evolve(row, count)
-        },
-        findRow(x, y) {
-            const line = this.grid[y - 1]
-            return line ? line.rows[x - 1] : null
         },
         evolve(row, count) {
             let { status, x, y } = row
@@ -51,26 +50,35 @@ export default {
                 }))
             }))
         },
-        getMatrix(x, y) {
+        find(x, y) {
+            const line = this.grid[y - 1]
+            return line ? line.rows[x - 1] : null
+        },
+        matrix(x, y) {
             return [
-                this.findRow(x - 1, y - 1),
-                this.findRow(x, y - 1),
-                this.findRow(x + 1, y - 1),
-                this.findRow(x - 1, y),
-                this.findRow(x + 1, y),
-                this.findRow(x - 1, y + 1),
-                this.findRow(x, y + 1),
-                this.findRow(x + 1, y + 1)
+                this.find(x - 1, y - 1),
+                this.find(x, y - 1),
+                this.find(x + 1, y - 1),
+                this.find(x - 1, y),
+                this.find(x + 1, y),
+                this.find(x - 1, y + 1),
+                this.find(x, y + 1),
+                this.find(x + 1, y + 1)
             ]
         },
         round() {
             const grid = this.grid.map((line, i) => ({
                 y: i + 1,
-                rows: line.rows.map((row) => this.checkRow(row))
+                rows: line.rows.map((row) => this.check(row))
             }))
             this.grid = grid
             this.count = this.count + 1
             if (this.running) {
+                this.currentloop = Date.now()
+                this.fps = this.lastloop
+                    ? Math.round((1000 / ( this.currentloop - this.lastloop )) * 100) / 100
+                    : 0
+                this.lastloop = this.currentloop
                 setTimeout(this.round, this.interval)
             }
         },
@@ -82,7 +90,7 @@ export default {
             this.running = false
         },
         toggle(x, y) {
-            const row = this.findRow(x, y)
+            const row = this.find(x, y)
             if (row) {
                 if (row.status === 0) {
                     row.status = 1
