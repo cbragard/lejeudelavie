@@ -1,28 +1,26 @@
 export default {
     name: 'App',
-    created() {
+    mounted () {
         this.empty(true)
     },
     data() {
         return {
             cols: 180,
             count: 0,
-            currentloop: null,
             fps: 0,
             grid: [],
-            interval: 50,
-            lastloop: null,
+            now: null,
             lines: 150,
             running: false
         }
     },
     methods: {
-        check(row) {
+        check (row) {
             const items = this.matrix(row.x, row.y)
             const count = items.reduce((acc, item) => item?.status === 1 ? acc + 1 : acc, 0)
             return this.evolve(row, count)
         },
-        evolve(row, count) {
+        evolve (row, count) {
             let { status, x, y } = row
             if (status === 1) {
                 if ([2, 3].indexOf(count) === -1) {
@@ -37,7 +35,7 @@ export default {
                 status
             }
         },
-        empty(random = false) {
+        empty (random = false) {
             this.count = 0
             this.grid = [...Array(this.lines)].map((_, i) => ({
                 y: i + 1,
@@ -50,11 +48,11 @@ export default {
                 }))
             }))
         },
-        find(x, y) {
+        find (x, y) {
             const line = this.grid[y - 1]
             return line ? line.rows[x - 1] : null
         },
-        matrix(x, y) {
+        matrix (x, y) {
             return [
                 this.find(x - 1, y - 1),
                 this.find(x, y - 1),
@@ -66,7 +64,7 @@ export default {
                 this.find(x + 1, y + 1)
             ]
         },
-        round() {
+        round () {
             const grid = this.grid.map((line, i) => ({
                 y: i + 1,
                 rows: line.rows.map((row) => this.check(row))
@@ -74,29 +72,27 @@ export default {
             this.grid = grid
             this.count = this.count + 1
             if (this.running) {
-                this.currentloop = Date.now()
-                this.fps = this.lastloop
-                    ? Math.round((1000 / ( this.currentloop - this.lastloop )) * 100) / 100
+                const now = Date.now()
+                this.fps = this.now
+                    ? Math.round((1000 / ( now - this.now )) * 100) / 100
                     : 0
-                this.lastloop = this.currentloop
-                setTimeout(this.round, this.interval)
+                this.now = now
+                setTimeout(this.round)
             }
         },
-        start() {
+        start () {
             this.running = true
             this.round()
         },
-        stop() {
+        stop () {
             this.running = false
         },
-        toggle(x, y) {
+        toggle (x, y) {
             const row = this.find(x, y)
-            if (row) {
-                if (row.status === 0) {
-                    row.status = 1
-                } else if(row.status === 1) {
-                    row.status = 0
-                }
+            if (row?.status === 0) {
+                row.status = 1
+            } else if(row?.status === 1) {
+                row.status = 0
             }
         }
     }
