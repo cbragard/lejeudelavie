@@ -8,7 +8,6 @@ services:
         volumes:
             - '.:/app'
         ports:
-            - 80:80
-            - 3001:3001
+            - 3000:3000
         env_file:
             - docker/.env
