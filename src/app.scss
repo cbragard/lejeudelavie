@@ -1,66 +1,67 @@
+@import "./scss/_reset";
 @import "./scss/_font";
 @import "./scss/_color";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .app {
-  display: flex;
-  padding: .2rem;
-
-  .grid {
     display: flex;
-    flex-flow: column;
-    flex: 1 1 calc(100% - 150px);
+    justify-content: space-around;
+    width: 100%;
 
-    .line {
-      display: flex;
-      flex-flow: row;
-      flex: 0 0 5px;
+    .grid {
+        display: flex;
+        flex-flow: column;
+        border: 1px solid black;
+        border-radius: .25rem;
 
-      .row {
-        flex: 0 0 5px;
-        background-color: white;
-        border: 1px solid rgba(0, 0, 0, .25);
-        cursor: pointer;
+        .line {
+            flex: 0 0 5px;
+            display: flex;
+            flex-flow: row;
 
-        &.row--alive {
-            background-color: black;
+            .row {
+                flex: 0 0 5px;
+                background-color: white;
+                border: 1px solid rgba(0, 0, 0, .25);
+                cursor: pointer;
+
+                &.row--alive {
+                    background-color: black;
+                }
+            }
         }
-      }
-    }
-  }
-
-  .controls {
-    flex: 0 0 150px;
-    padding: .2rem;
-    background-color: rgba(0, 0, 0, .3);
-    border: 1px solid grey;
-
-    .control {
-      padding: .25rem;
-
-      .label {
-
-      }
     }
 
-    input[type="number"] {
-      display: inline-block;
-      width: calc(50% - .4rem);
-      margin: .2rem;
-      padding: .2rem;
-    }
+    .controls {
+        flex: 0 0 200px;
+        background-color: lighten(grey, 30%);
+        border: 1px solid black;
+        border-radius: .25rem;
+        text-align: center;
 
-    button {
-      display: block;
-      width: 100%;
-      margin: .2rem 0;
-      padding: .2rem;
-      text-align: center;
+        .control {
+            margin: .5rem 0;
+
+            .label {
+                margin: 1rem 0;
+                padding: .5rem;
+                background-color: lighten(grey, 20%);
+            }
+        }
+
+        input[type="number"] {
+            display: inline-block;
+            width: calc(50% - .5rem);
+            margin: .25rem;
+            padding: .25rem;
+        }
+
+        button {
+            display: block;
+            width: calc(100% - .5rem);
+            margin: .25rem;
+            padding: .25rem;
+            text-align: center;
+            cursor: pointer;
+        }
     }
-  }
 }

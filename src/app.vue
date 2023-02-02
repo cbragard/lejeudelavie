@@ -19,21 +19,10 @@
         </div>
         <div class="controls">
             <div class="control">
-                {{ $t('round') }}: {{  count }}
+                {{ $t('round') }}: {{ count }}
             </div>
             <div class="control">
-                {{ $t('fps') }}: {{  fps }}
-            </div>
-            <div class="control">
-                <div class="label">
-                    {{ $t('reset') }}
-                </div>
-                <button v-on:click="empty(false)">
-                    {{ $t('empty') }}
-                </button>
-                <button v-on:click="empty(true)">
-                    {{ $t('random') }}
-                </button>
+                {{ $t('fps') }}: {{ fps }}
             </div>
             <div class="control">
                 <div class="label">
@@ -53,18 +42,26 @@
                 />
             </div>
             <div class="control">
+                <button @click="empty(false)">
+                    {{ $t('empty') }}
+                </button>
+                <button @click="empty(true)">
+                    {{ $t('random') }}
+                </button>
+            </div>
+            <div class="control">
                 <div class="label">
-                    {{ $t('evolution') }}
+                    {{ $t('controls') }}
                 </div>
                 <button
                     :disabled="this.running"
-                    v-on:click="start"
+                    @click="start"
                 >
                     {{ $t('start') }}
                 </button>
                 <button
                     :disabled="!this.running"
-                    v-on:click="stop"
+                    @click="stop"
                 >
                     {{ $t('stop') }}
                 </button>
@@ -72,7 +69,7 @@
             <div class="control">
                 <button
                     :disabled="this.running"
-                    v-on:click="round"
+                    @click="round"
                 >
                     {{ $t('plus-one-round') }}
                 </button>
@@ -82,7 +79,7 @@
 </template>
 
 <script
-    src="./app.js"
+    src="./app.mjs"
 />
 
 <style

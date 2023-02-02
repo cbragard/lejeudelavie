@@ -1,7 +1,8 @@
 {
     "en": {
         "empty": "empty",
-        "evolution": "evolution",
+        "controls": "controls",
+        "fps": "fps",
         "line-cols": "lines / cols",
         "random": "random",
         "reset": "reset",

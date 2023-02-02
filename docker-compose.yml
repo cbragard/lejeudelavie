@@ -2,12 +2,12 @@ version: '3'
 
 services:
     node:
-        container_name: lejeudelavie_node
+        container_name: lejeudelavie
         build:
             context: 'docker/node'
         volumes:
             - '.:/app'
         ports:
-            - 3000:3000
+            - 3003:3003
         env_file:
-            - docker/.env
+            - .env

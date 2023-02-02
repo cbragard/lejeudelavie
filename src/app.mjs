@@ -3,7 +3,7 @@ export default {
     mounted () {
         this.empty(true)
     },
-    data() {
+    data () {
         return {
             cols: 180,
             count: 0,
@@ -16,24 +16,20 @@ export default {
     },
     methods: {
         check (row) {
-            const items = this.matrix(row.x, row.y)
-            const count = items.reduce((acc, item) => item?.status === 1 ? acc + 1 : acc, 0)
+            const count = this.matrix(row.x, row.y).reduce((acc, item) =>
+                item?.status === 1
+                    ? acc + 1
+                    : acc
+            , 0)
             return this.evolve(row, count)
         },
-        evolve (row, count) {
-            let { status, x, y } = row
-            if (status === 1) {
-                if ([2, 3].indexOf(count) === -1) {
-                    status = 0
-                }
+        evolve ({ status, x, y }, count) {
+            if (status === 1 && [2, 3].indexOf(count) === -1) {
+                return { status: 0, x, y }
             } else if (count === 3) {
-                status = 1
+                return { status: 1, x, y }
             }
-            return {
-                x,
-                y,
-                status
-            }
+            return { status, x, y }
         },
         empty (random = false) {
             this.count = 0
@@ -50,7 +46,9 @@ export default {
         },
         find (x, y) {
             const line = this.grid[y - 1]
-            return line ? line.rows[x - 1] : null
+            return line
+                ? line.rows[x - 1]
+                : null
         },
         matrix (x, y) {
             return [
@@ -65,11 +63,10 @@ export default {
             ]
         },
         round () {
-            const grid = this.grid.map((line, i) => ({
+            this.grid = this.grid.map((line, i) => ({
                 y: i + 1,
                 rows: line.rows.map((row) => this.check(row))
             }))
-            this.grid = grid
             this.count = this.count + 1
             if (this.running) {
                 const now = Date.now()
