@@ -22,6 +22,6 @@ export default defineConfig({
         rewrite()
     ],
     server: {
-        port: 3001
+        port: 3003
     }
 })
