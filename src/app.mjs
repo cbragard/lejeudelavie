@@ -5,7 +5,7 @@ export default {
     },
     data () {
         return {
-            cols: 180,
+            cols: 150,
             count: 0,
             fps: 0,
             grid: [],

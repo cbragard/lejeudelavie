@@ -4,19 +4,16 @@
 
 .app {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
 
     .grid {
-        display: flex;
-        flex-flow: column;
+        width: 100%;
         border: 1px solid black;
         border-radius: .25rem;
 
         .line {
-            flex: 0 0 5px;
             display: flex;
             flex-flow: row;
+            height: 5px;
 
             .row {
                 flex: 0 0 5px;
