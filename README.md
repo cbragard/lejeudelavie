@@ -4,11 +4,13 @@ Simple implementation of "life game"
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 
+Used as a simple Vue.js startup project and performance rendering check.
+
 ## setup
 ```
 cp .env_sample .env
 ```
-optional: edit and update .env
+(optional: edit and update .env)
 
 ## run
 

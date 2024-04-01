@@ -1,9 +1,9 @@
 {
     "en": {
         "empty": "empty",
-        "controls": "controls",
+        "cols": "cols",
         "fps": "fps",
-        "line-cols": "lines / cols",
+        "lines": "lines",
         "random": "random",
         "reset": "reset",
         "round": "round",

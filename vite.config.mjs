@@ -1,7 +1,6 @@
 import { dirname, resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import rewrite from 'vite-plugin-rewrite-all'
 
 const __dirname = dirname('./')
 
@@ -9,8 +8,7 @@ export default defineConfig({
     publicDir: resolve(__dirname, 'public'),
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src'),
-            'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+            '@': resolve(__dirname, 'src')
         }
     },
     build: {
@@ -18,8 +16,7 @@ export default defineConfig({
         emptyOutDir: true
     },
     plugins: [
-        vue(),
-        rewrite()
+        vue()
     ],
     server: {
         port: 3003
