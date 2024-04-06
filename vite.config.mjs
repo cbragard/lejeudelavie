@@ -19,6 +19,6 @@ export default defineConfig({
         vue()
     ],
     server: {
-        port: 3003
+        port: process.env.NODE_PORT
     }
 })

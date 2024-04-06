@@ -1,7 +1,7 @@
 FROM node:21-alpine3.18
 
 ENV NODE_ENV=development
-ENV NODE_PORT=3003
+ENV NODE_PORT=3000
 ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
@@ -18,3 +18,4 @@ RUN npm install -g npm@latest
 EXPOSE $NODE_PORT
 
 CMD ["/bin/sh", "/scripts/run.sh"]
+

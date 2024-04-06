@@ -8,7 +8,7 @@
         "dist"
     ],
     "type": "module",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "repository": {
         "type": "git",
         "url": "git+https://github.com:cbragard/lejeudelavie.git"
@@ -17,9 +17,9 @@
         "url": "https://github.com/cbragard/lejeudelavie/issues"
     },
     "scripts": {
-        "build": "vite --config vite.doc.mjs build src",
+        "build": "vite --config vite.config.mjs build src",
         "dev": "vite --host --config vite.config.mjs src",
-        "lint": "eslint --ext .js,.mjs,.vue src",
+        "lint": "eslint --ext .js,.vue src",
         "preview": "vite --config vite.config.mjs preview src",
         "test:unit": "jest --clearCache && jest",
         "test:unit:coverage": "jest --clearCache && jest --coverage",

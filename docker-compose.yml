@@ -1,13 +1,18 @@
 version: '3'
-
 services:
     node:
-        container_name: lejeudelavie
+        container_name: e-xode.lejeudelavie
         build:
-            context: 'docker/node'
+            context: 'docker/dev'
         volumes:
             - '.:/app'
         ports:
-            - ${NODE_PORT}:${NODE_PORT}
+            - 3003:3003
         env_file:
-            - .env
+            - ./.env
+        networks:
+            - e-xode
+networks:
+  e-xode:
+    driver: bridge
+    external: true
