@@ -2,6 +2,9 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import vui from '@e-xode/vui'
 
+import '@e-xode/vui/dist/vui.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+
 import App from './app.vue'
 import messages from './messages.json'
 

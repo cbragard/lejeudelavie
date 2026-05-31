@@ -91,9 +91,6 @@ function toggle (x, y) {
         row.status = 0
     }
 }
-function test(label, value) {
-    console.log(label, value)
-}
 </script>
 <template>
     <vui-page class="layout-default">
