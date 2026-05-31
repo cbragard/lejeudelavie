@@ -24,7 +24,8 @@ export default [
             'vue/html-closing-bracket-newline': ['error'],
             'vue/html-indent': ['error', 4],
             'vue/multi-word-component-names': 'off',
-            'vue/no-v-html': 'off'
+            'vue/no-v-html': 'off',
+            'vue/valid-v-memo': 'off'
         }
     }
 ]

@@ -1,4 +1,3 @@
-version: '3'
 services:
     node:
         container_name: e-xode.lejeudelavie
@@ -6,6 +5,7 @@ services:
             context: 'docker/dev'
         volumes:
             - '.:/app'
+            - '/app/node_modules'
         ports:
             - 3003:3003
         env_file:
