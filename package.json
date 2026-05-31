@@ -1,7 +1,7 @@
 {
     "author": "Christophe BRAGARD",
-    "description": "Simple implementation of life game",
-    "homepage": "https://github.com/e-xode/vui#readme",
+    "description": "Conway's Game of Life — a Vue 3 rendering benchmark",
+    "homepage": "https://github.com/cbragard/lejeudelavie#readme",
     "name": "@cbragard/lejeudelavie",
     "license": "MIT",
     "files": [
