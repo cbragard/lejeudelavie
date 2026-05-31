@@ -1,6 +1,4 @@
-@import "@e-xode/vui/dist/style.css";
-@import "@fortawesome/fontawesome-free/css/all.css";
-@import "./style.scss";
+@use './style' as *;
 
 @font-face {
     font-family: 'Font Awesome 5 Brands';

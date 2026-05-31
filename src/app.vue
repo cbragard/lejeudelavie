@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, shallowRef, triggerRef, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 const i18n = useI18n()
 
@@ -12,7 +12,7 @@ const lines = ref(150)
 const fps = ref(0)
 const tick = ref(null)
 const count = ref(0)
-const grid = ref([])
+const grid = shallowRef([])
 const running = ref(false)
 
 function check(row) {
@@ -90,9 +90,7 @@ function toggle (x, y) {
     } else if(row?.status === 1) {
         row.status = 0
     }
-}
-function test(label, value) {
-    console.log(label, value)
+    triggerRef(grid)
 }
 </script>
 <template>
@@ -107,6 +105,7 @@ function test(label, value) {
                     <div
                         v-for="row in line.rows"
                         :key="`row--${row.x}-${row.y}`"
+                        v-memo="[row.status]"
                         :class="[
                             'row',
                             { 'row--alive': row.status }
