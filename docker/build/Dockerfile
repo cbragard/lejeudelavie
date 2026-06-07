@@ -23,6 +23,15 @@ ENV NODE_PORT=3003
 COPY --from=builder /app/dist/ /usr/share/nginx/html/
 COPY ./docker/build/config/nginx.conf /etc/nginx/conf.d/default.conf
 
+# Run the whole container as the built-in non-root `nginx` user (UID/GID 101) instead of root.
+# Static SPA on port 3003 (>1024, no root needed to bind). Move the pid to /tmp, drop the `user`
+# directive (a non-root master can't setuid), and make nginx's writable dirs (cache, conf.d, html)
+# nginx-owned. Access/error logs already go to stdout/stderr (the nginx:alpine image symlinks them),
+# so no log-file or bind-mount ownership change is needed.
+RUN sed -i 's|^user .*|# &|; s|/var/run/nginx.pid|/tmp/nginx.pid|; s|/run/nginx.pid|/tmp/nginx.pid|' /etc/nginx/nginx.conf \
+ && chown -R nginx:nginx /var/cache/nginx /var/log/nginx /usr/share/nginx/html /etc/nginx/conf.d
+USER nginx
+
 EXPOSE 3003
 
 CMD ["nginx", "-g", "daemon off;"]
