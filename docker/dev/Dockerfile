@@ -12,7 +12,7 @@ USER node
 
 WORKDIR /app
 
-RUN mkdir /home/node/.npm-global
+RUN mkdir -p /home/node/.npm-global /app/node_modules
 RUN npm install -g npm@latest
 
 EXPOSE $NODE_PORT
