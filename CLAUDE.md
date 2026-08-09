@@ -26,6 +26,8 @@
 
 **Plan escalation (automatic)** — heavy analysis/design work in a session below Opus → launch Plan/Explore agents with `model: opus` immediately, announce in one line, never ask (sole exception: user declined escalation, this task or standing); incorporate the returned plan faithfully.
 
+**Every incoming request is tracked** — a new request arriving while another is in progress is never silently dropped or serialised behind it; disjoint file scope → run it in parallel; same file → queue it until the in-progress work finishes.
+
 ---
 
 ## Project gotchas
