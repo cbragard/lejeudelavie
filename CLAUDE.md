@@ -24,6 +24,8 @@
 
 **No over-engineering** — This is a one-component toy/benchmark. Keep it simple. YAGNI.
 
+**Plan escalation (automatic)** — heavy analysis/design work in a session below Opus → launch Plan/Explore agents with `model: opus` immediately, announce in one line, never ask (sole exception: user declined escalation, this task or standing); incorporate the returned plan faithfully.
+
 ---
 
 ## Project gotchas
