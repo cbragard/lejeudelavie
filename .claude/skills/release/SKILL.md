@@ -52,26 +52,39 @@ npm run build
 
 ## Release branch & commit
 
-Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content`, **no `Co-Authored-By` trailer or any AI/assistant mention, ever**):
+Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content`, **no `Co-Authored-By` trailer or any AI/assistant mention, ever**). Only after explicit confirmation (no surprise pushes):
 
 ```bash
 git checkout -b release/vX.Y.Z
 git add package.json package-lock.json CHANGELOG.md
 git commit -m "[release/vX.Y.Z] release vX.Y.Z"
+git push origin release/vX.Y.Z
 ```
 
-## Tag & push
+## Merge into master (mandatory — this repo requires 1 approving review)
 
-Only after explicit confirmation (no surprise pushes):
+`master` is protected (1 approving review, linear history, squash/rebase only) and `lock_branch`ed
+— a PR is not optional here, it's the only way anything lands on `master`:
 
 ```bash
+gh pr create --base master --head release/vX.Y.Z --title "release vX.Y.Z" --body "..."
+gh pr merge --admin --squash --delete-branch   # self-approval forbidden, --admin required
+```
+
+## Tag & push — only once merged
+
+**Tag only after the release branch has merged into `master` — never on the still-unmerged
+release branch, and never optional.** Tagging `v*` triggers the GHCR image build, so the tag must
+point at what actually landed on `master`, not at a commit that could still be rejected in review:
+
+```bash
+git checkout master
+git pull
 git tag -a vX.Y.Z -m "release vX.Y.Z"
-git push origin release/vX.Y.Z
 git push origin vX.Y.Z
 ```
 
 ## Post-release
 
-- Open a PR from `release/vX.Y.Z` into `master` if your flow requires review.
 - Pushing the `vX.Y.Z` tag triggers `.github/workflows/docker-build.yml`, which builds `docker/build/Dockerfile` and publishes to GHCR: `ghcr.io/cbragard/lejeudelavie:latest` and `ghcr.io/cbragard/lejeudelavie:vX.Y.Z`.
 - Verify the image appears in the GHCR packages of the repo.
