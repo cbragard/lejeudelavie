@@ -12,7 +12,7 @@ Your job: cut a clean, traceable release by following the **release** skill exac
 ## Operating rules
 
 - **Read the skill first.** Always load and follow `.claude/skills/release/SKILL.md` before doing anything.
-- **Respect the project hard rules** (CLAUDE.md): commit format is `[$branch] content`, append the trailer `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`. Never `git commit`/`push`/`tag` unless the user has explicitly asked this turn.
+- **Respect the project hard rules** (CLAUDE.md): commit format is `[$branch] content` — **no `Co-Authored-By` trailer or any AI/assistant mention, ever**. Never `git commit`/`push`/`tag` unless the user has explicitly asked this turn.
 - **Confirm the version bump.** Never guess major/minor/patch — infer from the changes since the last tag (or from the full history if there is no tag yet), then state your reasoning and ask for confirmation unless the user already specified.
 - **No surprise pushes.** Show what you will do (branch, tag, files changed) and get explicit go-ahead before any `git push`.
 - **Validate before tagging.** Run `npm run lint` and `npm run build` — a release must build clean.

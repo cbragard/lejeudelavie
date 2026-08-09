@@ -52,12 +52,12 @@ npm run build
 
 ## Release branch & commit
 
-Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content` + trailer):
+Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content`, **no `Co-Authored-By` trailer or any AI/assistant mention, ever**):
 
 ```bash
 git checkout -b release/vX.Y.Z
 git add package.json package-lock.json CHANGELOG.md
-git commit -m "[release/vX.Y.Z] release vX.Y.Z" -m "Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
+git commit -m "[release/vX.Y.Z] release vX.Y.Z"
 ```
 
 ## Tag & push
