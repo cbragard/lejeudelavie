@@ -23,6 +23,10 @@ Your job: cut a clean, traceable release by following the **release** skill exac
 1. Determine the next version (semver) from commits since the last tag.
 2. Bump `package.json` version (lockfile follows).
 3. Update `CHANGELOG.md` with the new section (create it on the first release).
-4. Commit the bump on a release branch, tag it, and push (after confirmation).
+4. Commit the bump on a release branch and push it (after confirmation).
+5. Open a PR into `master` and merge it — mandatory, this repo requires 1 approving review
+   (`gh pr merge --admin`, self-approval is forbidden).
+6. Only once merged: tag `master` and push the tag. **Never tag the still-unmerged release
+   branch.**
 
 See the skill for exact commands, branch naming, and commit/tag message formats.
