@@ -6,7 +6,7 @@
 
 ## Hard rules
 
-**No auto-commit** — Never `git commit`/`push`/`tag`/`rebase`/`reset --hard` unless the user explicitly asks this turn. Commit format: `[$branch] content`. Append trailer: `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`.
+**No auto-commit** — Never `git commit`/`push`/`tag`/`rebase`/`reset --hard` unless the user explicitly asks this turn. Commit format: `[$branch] content`. **No `Co-Authored-By`/`Co-authored-by` trailer or any AI/assistant mention on any commit, ever** — commit author is always the user's own git account, full stop.
 
 **No code comments** — No `//`, `/* */`, or `<!-- -->` in `.vue`/`.mjs`/`.scss`.
 
