@@ -10,8 +10,10 @@ ADD . /app
 WORKDIR /app
 
 RUN mkdir /home/node/.npm-global
-RUN npm install -g npm@latest
-RUN npm install --production=false
+RUN npm install -g npm@12.0.2
+# npm ci installs the exact package-lock.json tree; --include=dev is required because NODE_ENV=production
+# would otherwise drop the devDependencies that `npm run build` needs.
+RUN npm ci --include=dev
 RUN npm run build
 
 # ----------------------------------------
