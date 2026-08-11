@@ -18,7 +18,7 @@ RUN npm run build
 
 # ----------------------------------------
 
-FROM nginx:1.27-alpine AS runner
+FROM nginx:1.31-alpine AS runner
 
 ENV NODE_PORT=3003
 
