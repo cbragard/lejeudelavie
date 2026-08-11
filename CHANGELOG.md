@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.2] — 2026-08-11
+
+### Fixed
+- Clear all 30 open Dependabot advisories (16 high / 14 medium): bump the `axios` override from
+  `^1.17.0` to `^1.18.0` (resolves 1.19.0 — prototype pollution, NO_PROXY bypass, form-serializer
+  `maxDepth`/`maxBodyLength` bypasses, deep recursion DoS), `brace-expansion` to 5.0.9/2.1.4/1.1.18
+  (DoS via unbounded intermediate arrays across the three major versions present in the tree),
+  `undici` to 7.29.0 (response desync, cache/cookie information disclosure, CRLF injection),
+  `nanoid` to 3.3.18 (indefinite loop on zero/negative size), `immutable` to 5.1.9 (32-bit trie
+  overflow, hash-collision DoS), `postcss` to 8.5.26 (sourceMappingURL arbitrary file read), and
+  `js-yaml` to 3.15.1 (quadratic CPU consumption in `!!omap` resolution). All transitive; a
+  lockfile refresh (`npm install` + `npm audit fix`, no `--force`) sufficed — every bump stayed on
+  its existing major version. `npm audit`: 0 vulnerabilities. lint + build pass; the repo has no
+  tests, so the built SPA was validated manually (served `dist/`, confirmed the grid renders and
+  the simulation evolves after START).
+
 ## [1.1.1] — 2026-07-17
 
 ### Fixed
