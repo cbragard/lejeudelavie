@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.3] — 2026-08-13
+
+### Changed
+- Docker runtime aligned on the fleet-standard `node:node` pattern (see `e-xode/vui`): runner image
+  switched from `nginx:1.27-alpine` to `node:24-alpine` + `apk add nginx supervisor`, container now
+  runs as `node` (UID/GID 1000) instead of the built-in `nginx` user (UID 101). Access/error logs
+  are now real files under the bind-mounted `/app/logs` instead of stdout/stderr symlinks, so the
+  same `chown -R 1000:1000` deploy-script pattern used by every other app now applies here too —
+  removes the special case flagged in `e-xode/scripts#10`. SPA routing behavior unchanged.
+
 ## [1.1.2] — 2026-08-11
 
 ### Fixed
