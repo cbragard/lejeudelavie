@@ -18,22 +18,31 @@ RUN npm run build
 
 # ----------------------------------------
 
-FROM nginx:1.27-alpine AS runner
+FROM node:24-alpine AS runner
 
 ENV NODE_PORT=3003
 
-COPY --from=builder /app/dist/ /usr/share/nginx/html/
-COPY ./docker/build/config/nginx.conf /etc/nginx/conf.d/default.conf
+RUN apk update
+RUN apk --no-cache add nginx supervisor
 
-# Run the whole container as the built-in non-root `nginx` user (UID/GID 101) instead of root.
-# Static SPA on port 3003 (>1024, no root needed to bind). Move the pid to /tmp, drop the `user`
-# directive (a non-root master can't setuid), and make nginx's writable dirs (cache, conf.d, html)
-# nginx-owned. Access/error logs already go to stdout/stderr (the nginx:alpine image symlinks them),
-# so no log-file or bind-mount ownership change is needed.
-RUN sed -i 's|^user .*|# &|; s|/var/run/nginx.pid|/tmp/nginx.pid|; s|/run/nginx.pid|/tmp/nginx.pid|' /etc/nginx/nginx.conf \
- && chown -R nginx:nginx /var/cache/nginx /var/log/nginx /usr/share/nginx/html /etc/nginx/conf.d
-USER nginx
+EXPOSE $NODE_PORT
 
-EXPOSE 3003
+WORKDIR /app
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/dist/ /app/dist/
+COPY ./docker/build/config/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/build/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Run the whole container as the built-in non-root `node` user (UID/GID 1000) instead of root —
+# aligned on the fleet-standard pattern (see e-xode/vui). lejeudelavie serves only a static SPA via
+# nginx (no node runtime at request time), but sharing one non-root UID across the fleet means one
+# deploy-script chown pattern everywhere instead of a per-app special case. Own /app + the nginx
+# state/log dirs so the unprivileged nginx (master + worker) can write; supervisord + nginx pidfiles
+# move /run → /tmp. The bind-mounted /app/logs must be 1000:1000 on the host (applied by
+# deploy.e-xode.lejeudelavie.sh) — access/error logs are now real files under /app/logs, not
+# stdout/stderr symlinks.
+RUN mkdir -p /app/logs /var/log/nginx && \
+    chown -R node:node /app /home/node /var/log/nginx /var/lib/nginx
+USER node
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
