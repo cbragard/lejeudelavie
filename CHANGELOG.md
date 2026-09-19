@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.4] — 2026-09-19
+
+### Fixed
+- Clear all 4 open npm audit advisories (2 high / 1 moderate / 1 low; 5 Dependabot alerts,
+  `browserslist` counted twice), all counted as production since this repo has no
+  `devDependencies`: bump `browserslist` to 4.29.0 (unbounded memory growth / prototype write via
+  `browserslist-stats.json`), `baseline-browser-mapping` to 2.11.25 (process termination on
+  invalid input), `js-yaml` to 3.15.2 (unbounded CPU via `maxTotalMergeKeys`), and
+  `postcss-selector-parser` to 7.1.6 (uncontrolled AST recursion DoS). All four are transitive (via
+  `@babel/preset-env`, `@vue/vue3-jest`, `eslint-plugin-vue`) — a lockfile refresh (`npm audit fix`,
+  no `--force`) sufficed, `package.json` ranges unchanged. `npm audit`: 0 vulnerabilities (full and
+  `--omit=dev`). lint + build pass; the repo has no test specs (`test:unit` matches nothing), so
+  validation was manual: served `dist/` via `npm run preview` and confirmed `index.html` plus the
+  built JS/CSS bundles return 200 with the expected byte sizes — the Game-of-Life grid interaction
+  itself was not exercised in a live browser this pass.
+
 ## [1.1.3] — 2026-08-13
 
 ### Changed
