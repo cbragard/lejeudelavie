@@ -26,6 +26,10 @@
 
 **Plan escalation (automatic)** — heavy analysis/design work in a session below Opus → launch Plan/Explore agents with `model: opus` immediately, announce in one line, never ask (sole exception: user declined escalation, this task or standing); incorporate the returned plan faithfully.
 
+**Delegate to `Explore` for context, not only for expertise** — before reading, run a recon `Grep`. If the matching files are large and the actually-relevant lines few, dispatch `Explore` even when no specialist agent applies — it absorbs the reading cost and returns only the conclusion. Skip it when the total is small: the round trip then costs more than just reading. This raises total token spend but shrinks main-session context occupancy, which is what governs when compaction starts degrading the session — never justify this as saving tokens. `Explore` skips `CLAUDE.md`, so its dispatch prompt must itself ask for a short conclusion with paths and line numbers, never excerpts.
+
+**Sub-agent contract** — Do scoped work → no validation → no comments → return a structured summary (what / files / **skipped, with the reason** / **what could not be verified** / blockers) → stay in scope. Report out-of-scope discoveries, don't act on them. An item skipped in silence is a reporting defect, not saved words.
+
 **Every incoming request is tracked** — a new request arriving while another is in progress is never silently dropped or serialised behind it; disjoint file scope → run it in parallel; same file → queue it until the in-progress work finishes.
 
 ---

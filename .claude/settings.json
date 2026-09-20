@@ -1,4 +1,5 @@
 {
+  "outputStyle": "exode-dev",
   "hooks": {
     "Stop": [
       {
@@ -21,6 +22,15 @@
       "Bash(git diff:*)",
       "Bash(git status:*)",
       "Bash(npx eslint:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(**/*.pem)",
+      "Read(**/id_rsa*)",
+      "Bash(git push --force:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git push -f:*)",
+      "Bash(git filter-branch:*)"
     ]
   }
 }

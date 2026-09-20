@@ -3,6 +3,7 @@
   "description": "Conway's Game of Life — a Vue 3 rendering benchmark",
   "homepage": "https://github.com/cbragard/lejeudelavie#readme",
   "name": "@cbragard/lejeudelavie",
+  "private": true,
   "license": "MIT",
   "files": [
     "dist"
