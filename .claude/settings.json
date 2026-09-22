@@ -1,18 +1,4 @@
 {
-  "outputStyle": "exode-dev",
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/lint.sh"
-          }
-        ]
-      }
-    ]
-  },
   "permissions": {
     "allow": [
       "Bash(npm run lint)",
@@ -32,5 +18,30 @@
       "Bash(git push -f:*)",
       "Bash(git filter-branch:*)"
     ]
-  }
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/lint.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "deadweight@deadweight": true
+  },
+  "extraKnownMarketplaces": {
+    "deadweight": {
+      "source": {
+        "source": "github",
+        "repo": "e-xode/deadweight"
+      }
+    }
+  },
+  "outputStyle": "exode-dev"
 }
