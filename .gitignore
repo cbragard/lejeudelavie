@@ -2,3 +2,7 @@
 dist
 node_modules
 .env
+
+# Audit run history: written deliberately by `deadweight --fresh --record`, not by the
+# hook. The trajectory that matters is the committed floor and its git history.
+.claude/audit/history.jsonl
