@@ -1,7 +1,18 @@
 {
   "date": "2026-09-22",
   "layout": "project",
-  "audit_sha": "e63d9d5b",
+  "audit_sha": "1b974ae8",
   "errors": 3,
-  "warnings": 19
+  "warnings": 19,
+  "error_ids": [
+    "09-agent-in-claude-md"
+  ],
+  "warning_ids": [
+    "04-skill-description-antitrigger",
+    "08b-agent-description",
+    "15-skill-index",
+    "26-evals-coverage",
+    "27-twin-division-table",
+    "35-hooks-timeout"
+  ]
 }
