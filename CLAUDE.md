@@ -49,7 +49,7 @@ At session start, read and apply all files in `.claude/rules/`. Each declares a 
 
 ---
 
-## Agents
+## Agents directory
 
 | Agent       | Delegate when…                                                                 |
 | ----------- | ------------------------------------------------------------------------------ |
