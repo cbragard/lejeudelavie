@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.5] — 2026-10-06
+
+### Fixed
+- Clear the 16 open Dependabot alerts (6 `axios`, 10 `undici`; 8 high) and the fixable `npm audit`
+  advisories with a non-breaking lockfile refresh (no `--force`): `axios` 1.19.0 to 1.20.0 (via
+  `@e-xode/vui`, the `overrides` range `^1.18.0` already allowed it), `undici` 7.29.0 to 7.30.0 (via
+  `jsdom`, test tooling only), `brace-expansion` to 1.1.21 / 2.1.7 / 5.0.12, and `vue` /
+  `@vue/server-renderer` to 3.5.43 (`vue` range raised to `^3.5.43`; server-renderer XSS advisory
+  GHSA-g2v6-rqmx-r4w6). The 35 remaining `npm audit` findings are all the `jest` 29 toolchain
+  (`braces`, `micromatch`, `js-yaml`, `sprintf-js`, `@jest/*`), dev-only and never bundled; the fix
+  is `jest` 30, a breaking change blocked by `@vue/vue3-jest` (see CLAUDE.md), left for decision.
+  The repo has no test specs; validation was `npm ci`, lint, `npm run build` and a local Docker
+  image build, all passing.
+
 ## [1.1.4] — 2026-09-19
 
 ### Fixed
