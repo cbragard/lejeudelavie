@@ -24,7 +24,7 @@
 
 **No over-engineering** — This is a one-component toy/benchmark. Keep it simple. YAGNI.
 
-Model routing and context delegation: user scope (~/.claude/CLAUDE.md).
+Model routing and context delegation: `.claude/rules/model-routing.md`.
 
 **Sub-agent contract** — Do scoped work → no validation → no comments → return a structured summary (what / files / **skipped, with the reason** / **what could not be verified** / blockers) → stay in scope. Report out-of-scope discoveries, don't act on them. An item skipped in silence is a reporting defect, not saved words.
 
