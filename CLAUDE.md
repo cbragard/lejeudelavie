@@ -71,17 +71,3 @@ npm run preview  # Preview the production build
 ## Validation
 
 The `Stop` hook (`.claude/hooks/lint.sh`) runs `npm run lint` automatically at task end and blocks on failure. For changes that affect bundling/SCSS, also run `npm run build` to catch Vite-level errors.
-
----
-
-## Skills index
-
-Skills load on demand by description match.
-
-| Skill              | Triggers on                                                                    |
-| ------------------ | ------------------------------------------------------------------------------ |
-| `game-of-life`     | The simulation: grid model, Conway rules, evolve/round loop, FPS, reset/toggle |
-| `vui-components`    | `@e-xode/vui` usage: registration, CSS import, components used + their props   |
-| `translate`        | i18n: `messages.json` structure, `i18n.t()` usage, en/fr parity, locale audit  |
-| `vue3-performance` | Rendering perf for the grid benchmark: shallowRef, v-memo/v-once, keys         |
-| `release`          | Cutting a version: semver bump, CHANGELOG, release branch, tag, GHCR publish    |
