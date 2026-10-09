@@ -1,15 +1,13 @@
 {
-  "date": "2026-10-02",
+  "date": "2026-10-09",
   "layout": "project",
-  "audit_sha": "caa6a74d",
+  "audit_sha": "168cd060",
   "errors": 0,
-  "warnings": 11,
+  "warnings": 5,
   "error_ids": [],
   "warning_ids": [
     "04-skill-description-antitrigger",
     "08b-agent-description",
-    "15-skill-index",
-    "26-evals-coverage",
-    "35-hooks-timeout"
+    "26-evals-coverage"
   ]
 }

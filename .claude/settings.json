@@ -8,7 +8,8 @@
       "Bash(npm run preview)",
       "Bash(git diff:*)",
       "Bash(git status:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "WebFetch"
     ],
     "deny": [
       "Read(./.env)",
@@ -44,5 +45,9 @@
       }
     }
   },
-  "outputStyle": "exode-dev"
+  "outputStyle": "exode-dev",
+  "statusLine": {
+    "type": "command",
+    "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/statusline.py"
+  }
 }

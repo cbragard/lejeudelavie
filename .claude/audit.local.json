@@ -1,3 +1,11 @@
 {
-  "profile": "house"
+  "profile": "house",
+  "exemptions": [
+    {
+      "check": "50-security-broad-allow",
+      "path": ".claude/settings.json",
+      "reason": "WebFetch is allowed on purpose, fleet policy of 2026-10-09: the orchestrator is asked to research the web in this project and the sources cannot be listed in advance. A domain list would only move the prompts. Sessions run in bypassPermissions, where allow rules are inert; the rule serves a clone on a machine without that setting.",
+      "date": "2026-10-09"
+    }
+  ]
 }
