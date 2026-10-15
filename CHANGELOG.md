@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.6] — 2026-10-15
+
+### Changed
+- Bump bundled dependencies: `vue-i18n` 11.4.5 to 11.4.13, `@fortawesome/fontawesome-free` 7.2.0 to
+  7.3.1, `dayjs` 1.11.21 to 1.11.23, `sass` 1.102.0 to 1.105.1. Dev tooling: `eslint` 10.12.0,
+  `eslint-plugin-vue` 10.11.1, `globals` 17.13.0. CI: `actions/checkout` and `actions/setup-node`
+  to v7. The 2 open Dependabot alerts (`braces`, `sprintf-js`, jest 29 toolchain, dev-only, no
+  patched version published) stay open.
+
 ## [1.1.5] — 2026-10-06
 
 ### Fixed
