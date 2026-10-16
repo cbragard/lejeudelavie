@@ -34,8 +34,7 @@ Model routing and context delegation: `.claude/rules/model-routing.md`.
 
 ## Project gotchas
 
-- **Do not bump `jest` past 29.x** — `@vue/vue3-jest` (the `.vue` transform) is unmaintained and peer-locks `jest@29`. Bumping breaks the test toolchain.
-- **`npm run test:unit` has no specs** — jest is configured but there are no `*.spec.mjs` files. Don't rely on it as a gate; use `npm run lint` + `npm run build`.
+- **Tests run on vitest** — `vitest.config.mjs` (jsdom, `@` alias, `src/**/*.spec.mjs`). Jest was removed on 2026-10-16: its `.vue` transform (`@vue/vue3-jest`) was unmaintained and peer-locked `jest@29`. `npm run test:unit` has no specs (`--passWithNoTests`): don't rely on it as a gate; use `npm run lint` + `npm run build`.
 - **`fr` locale is incomplete** in `src/messages.json` (only `en` is filled). Keep parity when adding keys → `translate` agent/skill.
 - **axios vuln** is transitive via `@e-xode/vui` (the org's own lib); `npm audit` shows "No fix available" — fixable only by bumping axios inside `@e-xode/vui`, not here.
 
