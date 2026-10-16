@@ -34,7 +34,7 @@ Model routing and context delegation: `.claude/rules/model-routing.md`.
 
 ## Project gotchas
 
-- **Tests run on vitest** — `vitest.config.mjs` (jsdom, `@` alias, `src/**/*.spec.mjs`). Jest was removed on 2026-10-16: its `.vue` transform (`@vue/vue3-jest`) was unmaintained and peer-locked `jest@29`. `npm run test:unit` has no specs (`--passWithNoTests`): don't rely on it as a gate; use `npm run lint` + `npm run build`.
+- **Tests run on vitest** — `vitest.config.mjs` (jsdom, `@` alias, `src/**/*.spec.mjs`). Jest was removed on 2026-10-16: its `.vue` transform (`@vue/vue3-jest`) was unmaintained and peer-locked `jest@29`. `npm run test:unit` runs one spec, `src/app.spec.mjs` (mounts `app.vue` with vue-i18n and `@e-xode/vui`): it catches a broken `app.vue` or a missing library, not the game logic. CI does not run it; the `Stop` hook runs lint only. Also run `npm run lint` + `npm run build`.
 - **`fr` locale is incomplete** in `src/messages.json` (only `en` is filled). Keep parity when adding keys → `translate` agent/skill.
 - **axios vuln** is transitive via `@e-xode/vui` (the org's own lib); `npm audit` shows "No fix available" — fixable only by bumping axios inside `@e-xode/vui`, not here.
 
