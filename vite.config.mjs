@@ -4,6 +4,9 @@ import vue from '@vitejs/plugin-vue'
 
 const __dirname = dirname('./')
 
+const allowedHosts = ['.dev.e-xode.net', ...(process.env.VITE_ALLOWED_HOSTS ?? '')
+    .split(',').map(host => host.trim()).filter(Boolean)]
+
 export default defineConfig({
     publicDir: resolve(__dirname, 'public'),
     resolve: {
@@ -19,6 +22,7 @@ export default defineConfig({
         vue()
     ],
     server: {
-        port: process.env.NODE_PORT
+        port: process.env.NODE_PORT,
+        allowedHosts
     }
 })
