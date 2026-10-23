@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+- Clear the 3 open Dependabot alerts and the 2 high `npm audit` advisories with a non-breaking lockfile
+  refresh (no `--force`): `vite` 8.1.5 to 8.3.5 (dev tooling, launch-editor and dev-server advisories) and
+  `follow-redirects` 1.16.0 to 1.16.1 (via `@e-xode/vui` / `axios`, GHSA-q3jh-wrc6-jgq8 and GHSA-8r9p-f939-6h3c).
+
 ## [1.1.6] — 2026-10-15
 
 ### Changed
