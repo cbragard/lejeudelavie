@@ -1,6 +1,12 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.7] — 2026-10-29
+
+### Changed
+- Replace the jest 29 toolchain with vitest 4.1.12 (`vitest.config.mjs`: Vue plugin, `@` alias, jsdom); dev-only,
+  `npm audit` drops from 35 findings to 0. Add a mount test for `app.vue` (`src/app.spec.mjs`).
+- Dev server: allow `*.dev.e-xode.net` (plus `VITE_ALLOWED_HOSTS`) in the Vite dev server and bind the dev port
+  to loopback in `docker-compose.yml`.
 
 ### Fixed
 - Clear the 3 open Dependabot alerts and the 2 high `npm audit` advisories with a non-breaking lockfile
