@@ -7,6 +7,7 @@
   refresh (no `--force`): `vite` 8.1.5 to 8.3.5 (dev tooling, launch-editor and dev-server advisories) and
   `follow-redirects` 1.16.0 to 1.16.1 (via `@e-xode/vui` / `axios`, GHSA-q3jh-wrc6-jgq8 and GHSA-8r9p-f939-6h3c).
 - Clear the `undici` high advisories (dev-only, via `jsdom`) with a lockfile refresh: 7.30.0 to 7.30.1.
+- Clear the `vue-i18n` high advisory (GHSA-83rm-6c8r-g728, XSS through `srcdoc` in translation messages): `vue-i18n` 11.4.13 to 11.4.16, with the `@intlify/*` packages following in the lockfile. `npm audit` now reports 0 vulnerabilities.
 
 ## [1.1.6] — 2026-10-15
 
