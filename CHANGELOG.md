@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- Move the runtime to Node 26 LTS: `docker/build` (builder and runner) and `docker/dev` images on `node:26-alpine`, CI workflows on `node-version: 26`.
+
 ## [1.1.7] — 2026-10-29
 
 ### Changed
