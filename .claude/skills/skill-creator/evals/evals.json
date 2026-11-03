@@ -1,0 +1,39 @@
+{
+  "skill_name": "skill-creator",
+  "schema": "evals/1",
+  "evals": [
+    {
+      "id": 1,
+      "name": "trigger-create-skill",
+      "kind": "content",
+      "prompt": "Create a new skill that documents our Stripe payment integration patterns",
+      "assertions": [
+        {
+          "text": "Guides through the create/eval/iterate workflow, scaffolds a SKILL.md with valid frontmatter (third-person description, concrete triggers, anti-triggers) and respects the description budget"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "trigger-improve-description",
+      "kind": "content",
+      "prompt": "The game-of-life skill never seems to trigger — help me rewrite its description",
+      "assertions": [
+        {
+          "text": "Applies description best practices (discriminating keywords, third-person, Don't-use-for anti-triggers) and verifies length against the budget rather than editing skill body content"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "negative-add-translation",
+      "kind": "content",
+      "prompt": "Add a translation key for the new notifications page",
+      "assertions": [
+        {
+          "text": "Does NOT trigger skill-creator; this is an i18n task that belongs to the translate skill/agent"
+        }
+      ]
+    }
+  ]
+}
