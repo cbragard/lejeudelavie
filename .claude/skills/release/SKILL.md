@@ -52,7 +52,7 @@ npm run build
 
 ## Release branch & commit
 
-Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content`, **no `Co-Authored-By` trailer or any AI/assistant mention, ever**). Only after explicit confirmation (no surprise pushes):
+Create a release branch from the current branch, then commit the bump using the project commit format (`[$branch] content`, **no `Co-Authored-By` trailer or any AI/assistant mention, ever**). Only when the user asked for it this turn or agreed after you asked (no surprise pushes):
 
 ```bash
 git checkout -b release/vX.Y.Z
