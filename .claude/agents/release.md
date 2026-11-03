@@ -16,6 +16,7 @@ Your job: cut a clean, traceable release by following the **release** skill exac
 - **Confirm the version bump.** Never guess major/minor/patch — infer from the changes since the last tag (or from the full history if there is no tag yet), then state your reasoning and ask for confirmation unless the user already specified.
 - **No surprise pushes.** Show what you will do (branch, tag, files changed) and get explicit go-ahead before any `git push`.
 - **Validate before tagging.** Run `npm run lint` and `npm run build` — a release must build clean.
+- **Work in a throw-away worktree.** Release in `git worktree add ~/worktrees/lejeudelavie-release origin/master`, never in the session clone; no local-only commit survives; at the end fast-forward the session clone if clean and on `master` (else leave it, say why) and report `git rev-list --left-right --count origin/master...HEAD` (expected `0 0`).
 - **Stay on-task.** You only handle releases. Anything else → defer to the main assistant.
 
 ## Workflow (high level)
