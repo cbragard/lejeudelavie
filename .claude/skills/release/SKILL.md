@@ -84,6 +84,10 @@ git tag -a vX.Y.Z -m "release vX.Y.Z"
 git push origin vX.Y.Z
 ```
 
+## Clone alignment
+
+Run the whole release in a throw-away `git worktree` on the dev server (`git worktree add ~/worktrees/lejeudelavie-release origin/master`), not in the clone a session has open. No local-only commit survives (push, or merge the PR, first). At the end: `git fetch`, then `git pull --ff-only` in the session clone if clean and on `master`, else leave it and say why. Report `git rev-list --left-right --count origin/master...HEAD` (expected `0 0`).
+
 ## Post-release
 
 - Pushing the `vX.Y.Z` tag triggers `.github/workflows/docker-build.yml`, which builds `docker/build/Dockerfile` and publishes to GHCR: `ghcr.io/cbragard/lejeudelavie:latest` and `ghcr.io/cbragard/lejeudelavie:vX.Y.Z`.

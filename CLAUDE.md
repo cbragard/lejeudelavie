@@ -8,6 +8,8 @@
 
 **No auto-commit** — Never `git commit`/`push`/`tag`/`rebase`/`reset --hard` unless the user explicitly asks this turn. Commit format: `[$branch] content`. **No `Co-Authored-By`/`Co-authored-by` trailer or any AI/assistant mention on any commit, ever** — commit author is always the user's own git account, full stop.
 
+**Clone alignment** (2026-11-03) — A release, tag, deploy or campaign runs in a throw-away `git worktree` on the dev server (`git worktree add ~/worktrees/lejeudelavie-<op> origin/master`), never in the clone a session has open. No local-only commit survives the operation (pushed, or PR merged, before it is declared done). At the end: `git fetch`, then `git pull --ff-only` in the session clone if it is clean and on `master`, otherwise leave it and say why. The report gives `git rev-list --left-right --count origin/master...HEAD` (expected `0 0`).
+
 **No code comments** — No `//`, `/* */`, or `<!-- -->` in `.vue`/`.mjs`/`.scss`.
 
 **No `console.*`** — ESLint enforces `no-console: error`. Never leave debug logging (a dead `console.log` was already removed once).
