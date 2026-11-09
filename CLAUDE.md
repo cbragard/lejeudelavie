@@ -10,6 +10,8 @@
 
 **Clone alignment** (2026-11-03) — A release, tag, deploy or campaign runs in a throw-away `git worktree` on the dev server (`git worktree add ~/worktrees/lejeudelavie-<op> origin/master`), never in the clone a session has open. No local-only commit survives the operation (pushed, or PR merged, before it is declared done). At the end: `git fetch`, then `git pull --ff-only` in the session clone if it is clean and on `master`, otherwise leave it and say why. The report gives `git rev-list --left-right --count origin/master...HEAD` (expected `0 0`).
 
+**Release chain** — merge → annotated tag → green pipeline (GHCR image); no production host here, the chain stops there. Any rollout is the ops session's, never the project agent's, and uses no SSH from here: `e-xode.ops` → `.claude/reference/release-handoff.md`.
+
 **No code comments** — No `//`, `/* */`, or `<!-- -->` in `.vue`/`.mjs`/`.scss`.
 
 **No `console.*`** — ESLint enforces `no-console: error`. Never leave debug logging (a dead `console.log` was already removed once).
