@@ -91,4 +91,4 @@ Run the whole release in a throw-away `git worktree` on the dev server (`git wor
 ## Post-release
 
 - Pushing the `vX.Y.Z` tag triggers `.github/workflows/docker-build.yml`, which builds `docker/build/Dockerfile` and publishes to GHCR: `ghcr.io/cbragard/lejeudelavie:latest` and `ghcr.io/cbragard/lejeudelavie:vX.Y.Z`.
-- Verify the image appears in the GHCR packages of the repo.
+- Verify the image appears in the GHCR packages of the repo. The release ends at the green pipeline: this project has no production host, and the project agent never deploys or uses SSH. Any rollout is handed to the ops session (`e-xode.ops/.claude/reference/release-handoff.md`).

@@ -29,5 +29,6 @@ Your job: cut a clean, traceable release by following the **release** skill exac
    (`gh pr merge --admin`, self-approval is forbidden).
 6. Only once merged: tag `master` and push the tag. **Never tag the still-unmerged release
    branch.**
+7. Wait for the green pipeline of the tag (GHCR image); red means fix and re-release. The release ends there: never deploy or use SSH, and hand any rollout to the ops session (`e-xode.ops/.claude/reference/release-handoff.md`).
 
 See the skill for exact commands, branch naming, and commit/tag message formats.
