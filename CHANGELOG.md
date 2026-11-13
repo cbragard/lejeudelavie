@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.9] — 2026-11-13
+
+### Fixed
+- Clear the Dependabot alerts on `glob` (AbortSignal cancellation bypass) and `minimatch` (globparts DoS) with `overrides` to `glob` ^14.0.2 and `minimatch` ^11.0.1 (no `--force`); both are dev-tooling only (eslint, @vue/test-utils) and never reach the production image, which ships only `dist/`. `npm audit`: 7 moderate to 0.
+
 ## [1.1.8] — 2026-11-03
 
 ### Changed
